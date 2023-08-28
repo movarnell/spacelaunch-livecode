@@ -1,7 +1,15 @@
-.launchImages {
-    max-width: 100px;
-    margin: 2rem;
+.cardImages{
+   max-width: min-content;
+    max-height: min-content;
+    width: 100%;
+    height: 100%;
+   
+   
+    object-fit:fill;
+    
 }
+
+
 
 .heroText {
     font-size: 1.5rem;
