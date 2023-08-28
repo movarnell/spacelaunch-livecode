@@ -6,6 +6,7 @@ import Title from './components/title'
 import Mainpage from './components/mainpage'
 import Navbar from './components/navbar'
 import Launches from './components/Launches'
+import About from './components/About'
 
 
 function App() {
@@ -37,6 +38,7 @@ useEffect(() => {
     <Routes>
       <Route path='/' element={<Mainpage />} />
       <Route path="/launches" element={<Launches launch={launch}/>} />
+      <Route path="/about" element={<About />} />
     </Routes>
     </BrowserRouter>
   )

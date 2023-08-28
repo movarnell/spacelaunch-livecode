@@ -27,13 +27,13 @@ console.log(launch);
        
     return (
         <div key={uuidv4()}>
-            <h1>Launches</h1>
-            <div className="row" key={uuidv4()}>
+            <h1 className='display-5 text-center'>Upcoming Launches</h1>
+            <div className="row m-4" key={uuidv4()}>
            
                 {launches.map((launch) => {
                     return (
-                        <div className='col-3' key={uuidv4()}>
-                            <div className='card' key={uuidv4()}>
+                        <div className='col-xsm-12 col-md-4 col-lg-4 col-xl-2 pb-3' key={uuidv4()}>
+                            <div className='card shadow-lg' key={uuidv4()}>
                                 <img src={launch.vehicle.includes("Falcon") ? "src/assets/Falcon_9_logo.svg" : launch.vehicle.includes("Atlas") ? "src/assets/Atlas-V.svg" : launch.vehicle.includes("Firefly") ? "src/assets/Firefly-Logo.svg" : launch.image } className='card-img-top' alt={launch.launchName}/>
                                 <div className='card-body' key={uuidv4()}>
                                     <h5 className='card-title'>{launch.provider}</h5>

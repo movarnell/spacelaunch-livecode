@@ -2,3 +2,9 @@
     max-width: 100px;
     margin: 2rem;
 }
+
+.heroText {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-right: 2rem;
+}
