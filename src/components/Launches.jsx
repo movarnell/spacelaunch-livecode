@@ -14,9 +14,10 @@ console.log(launch);
         "provider": launch.launch_service_provider.name,  
         "type": launch.launch_service_provider.type, 
         "location": launch.pad.location.name,
-        "nextOpporunity": format(parseISO(launch.window_start),'MM-dd-yy h:mm aa'),
-        "launchStatus": launch.status.name,
-        "statusDescription": launch.status.description,
+        "nextOpportunity": format(parseISO(launch.window_start),'MM-dd-yy h:mm aa'),
+        "launchStatus": launch.status && launch.status.name ? launch.status.name : "No status available",
+        "statusDescription": launch.status && launch.status.description ? launch.status.description : "No description available",
+        "launchDescription": launch.mission && launch.mission.description ? launch.mission.description : "No description available",
          }
             return launchArray
         })
@@ -26,9 +27,9 @@ console.log(launch);
 
        
     return (
-        <div key={uuidv4()}>
+        <div key={uuidv4()} className='smoke'>
             <h1 className='display-5 text-center'>Upcoming Launches</h1>
-            <p className='text-center fw-bold'>Next Launch on {launches[0].nextOpporunity}</p>
+            <p className='text-center fw-bold'>Next Launch on {launches[0].nextOpportunity}</p>
             <div className="row m-4" key={uuidv4()}>
            
                 {launches.map((launch) => {
@@ -37,7 +38,7 @@ console.log(launch);
                             <div className='card shadow-lg' key={uuidv4()}>
                                 <div className="row">
                                     <div className="col-4">
-                                <img src={launch.vehicle.includes("Falcon") ? "src/assets/Falcon_9_logo.svg" : launch.vehicle.includes("Atlas") ? "src/assets/Atlas-V.svg" : launch.vehicle.includes("Firefly") ? "src/assets/Firefly-Logo.svg" : launch.image } className='cardImages' alt={launch.launchName}/>
+                                <img src={launch.image} className='card-img-top fillImage' alt='rocket' key={uuidv4()}></img>
                                 </div>
                                 <div className="col-8">
                                 <div className='card-body' key={uuidv4()}>
@@ -45,10 +46,10 @@ console.log(launch);
                                     <p className='card-text'>{launch.vehicle}</p>
                                     <p className='card-text'>Mission Type: {launch.type}</p>
                                     <p className='card-text'>Location: {launch.location}</p>
-                    
+                                    <p className='card-text'>{launch.launchDescription}</p>
                                     <p className='fw-bold card-text'>Status: {launch.launchStatus}</p>
                                     <p className='card-text'>{launch.statusDescription}</p>
-                                    <p className='card-text'>Launch window opens: {launch.nextOpporunity}</p>
+                                    <p className='card-text'>Launch window opens: {launch.nextOpportunity}</p>
 
                                 </div></div></div>
                                 
