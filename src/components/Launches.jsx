@@ -2,7 +2,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import {format, parseISO} from 'date-fns'
 
-export default function Launches({launch, patch}) {
+export default function Launches({launch, addToFavorites}) {
 
 console.log(launch);
 
@@ -14,7 +14,7 @@ console.log(launch);
         "provider": launch.launch_service_provider.name,  
         "type": launch.launch_service_provider.type, 
         "location": launch.pad.location.name,
-        "nextOpportunity": format(parseISO(launch.window_start),'MM-dd-yy h:mm aa'),
+        "nextOpportunity": format(parseISO(launch.window_start),'MM-dd-yyyy h:mm aa') ? format(parseISO(launch.window_start),'MM-dd-yyyy h:mm aa') : "No date available",
         "launchStatus": launch.status && launch.status.name ? launch.status.name : "No status available",
         "statusDescription": launch.status && launch.status.description ? launch.status.description : "No description available",
         "launchDescription": launch.mission && launch.mission.description ? launch.mission.description : "No description available",
@@ -29,7 +29,7 @@ console.log(launch);
     return (
         <div key={uuidv4()} className='smoke'>
             <h1 className='display-5 text-center'>Upcoming Launches</h1>
-            <p className='text-center fw-bold'>Next Launch on {launches[0].nextOpportunity}</p>
+            {/* <p className='text-center fw-bold'>Next Launch on {launches[0].nextOpportunity}</p> */}
             <div className="row m-4" key={uuidv4()}>
            
                 {launches.map((launch) => {
@@ -42,15 +42,15 @@ console.log(launch);
                                 </div>
                                 <div className="col-8">
                                 <div className='card-body' key={uuidv4()}>
-                                    <h5 className='card-title'>{launch.provider}</h5>
+                                    <h3 className='card-title'>{launch.provider}</h3>
                                     <p className='card-text'>{launch.vehicle}</p>
                                     <p className='card-text'>Mission Type: {launch.type}</p>
                                     <p className='card-text'>Location: {launch.location}</p>
-                                    <p className='card-text'>{launch.launchDescription}</p>
-                                    <p className='fw-bold card-text'>Status: {launch.launchStatus}</p>
+                                    <p className='card-text fw-bolder'>{launch.launchDescription}</p>
+                                    <h5 className='fw-bold card-text'>Status: {launch.launchStatus}</h5>
                                     <p className='card-text'>{launch.statusDescription}</p>
-                                    <p className='card-text'>Launch window opens: {launch.nextOpportunity}</p>
-
+                                    {/* <p className='card-text'>Launch window opens: {launch.nextOpportunity}</p> */}
+                                    <button className='btn btn-primary' onClick={() => addToFavorites(launch)}>Add to Favorites</button>
                                 </div></div></div>
                                 
                                

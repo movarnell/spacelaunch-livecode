@@ -18,6 +18,9 @@ export default function Navbar() {
           <Link to="/launches" className='nav-link'>Launches</Link>
         </li>
         <li className="nav-item">
+          <Link to="/wishlist" className='nav-link'>Wish List</Link>
+        </li>
+        <li className="nav-item">
           <Link to="/about" className='nav-link'>About</Link>
         </li>
       
