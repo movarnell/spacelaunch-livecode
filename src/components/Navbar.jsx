@@ -1,34 +1,55 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import { useRef, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+
+function NavigationMenu() {
+  const [expanded, setExpanded] = useState(false)
+  const toggleRef = useRef(null)
+
+  function handleKeyDown(event) {
+    if (event.key === 'Escape' && expanded) {
+      setExpanded(false)
+      toggleRef.current?.focus()
+    }
+  }
+
+  return (
+    <nav className="navbar navbar-expand-lg bg-body-tertiary" aria-label="Primary" onKeyDown={handleKeyDown}>
+      <div className="container-fluid">
+        <NavLink to="/" end className="navbar-brand">
+          Rocket Addict
+        </NavLink>
+        <button
+          ref={toggleRef}
+          className="navbar-toggler"
+          type="button"
+          aria-label="Navigation menu"
+          aria-controls="primary-navigation"
+          aria-expanded={expanded}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <span className="navbar-toggler-icon" aria-hidden="true" />
+        </button>
+        <div id="primary-navigation" className={`collapse navbar-collapse${expanded ? ' show' : ''}`}>
+          <ul className="navbar-nav">
+            {[
+              ['/launches', 'Launches'],
+              ['/wishlist', 'Wish List'],
+              ['/about', 'About'],
+            ].map(([path, label]) => (
+              <li key={path} className="nav-item">
+                <NavLink to={path} className="nav-link">
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  )
+}
 
 export default function Navbar() {
-  return (
-    <>
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-  <div className="container-fluid">
-   <Link to='/' className='navbar-brand'>
-    Rocket Addict</Link>
-   
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-      <li className="nav-item">
-          <Link to="/launches" className='nav-link'>Launches</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/wishlist" className='nav-link'>Wish List</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/about" className='nav-link'>About</Link>
-        </li>
-      
-      </ul>
-    </div>
-  </div>
-</nav>
-    
-    </>
-  )
+  const { pathname } = useLocation()
+  return <NavigationMenu key={pathname} />
 }

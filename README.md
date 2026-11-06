@@ -1,30 +1,16 @@
-# Project Title
+# Rocket Addict
 
-## Overview
-This is a React-based front-end application focusing on pulling rocket launches from an API. It has been added to implementing Mock.API to keep a wish list for the launches. It started as a live code and was added to later. 
+Browse upcoming rocket launches from The Space Devs’ Launch Library and save missions to a wish list in your browser.
 
-## Features
-- Title Component: Displays the main title
-- Navbar Component: Navigation bar
-- Mainpage Component: Main content area
-- About Component: Information about the project
-- Launches Component: Displays launches
-- Wishlist Component: Manages user wishlist
+## Local development
 
-## Technologies Used
-- React
-- React Router
-- React-Bootstrap
-- date-fns
-- uuid
-- Vite
+Use Node.js 22.12 or later in the 22.x series, or another version supported by the package manifest.
 
-## How to Run the Project
-1. Clone the repository
-2. Run `npm install` to install dependencies
-3. Run `npm run dev` to start the development server
+```sh
+npm ci
+npm run dev
+```
 
-### NPM Scripts
-- `npm run dev`: Start the development server
-- `npm run build`: Build the project for production
-- `npm run lint`: Lint the project files
+## Production
+
+Run `npm run lint` to check the source and `npm run build` to create the static site in `dist`. Use `npm run preview` to browse the production build locally at `/spacelaunch-livecode/`. The `npm run deploy` command publishes the build to GitHub Pages.

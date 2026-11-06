@@ -1,0 +1,25 @@
+body {
+  overflow-wrap: anywhere;
+}
+
+#root :focus-visible {
+  outline: 3px solid #153d86;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.skip-link:focus {
+  position: fixed;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 1100;
+  padding: 0.65rem 1rem;
+  background: #fff;
+  color: #153d86;
+}
+
+@media (forced-colors: active) {
+  #root :focus-visible {
+    outline-color: Highlight;
+  }
+}
